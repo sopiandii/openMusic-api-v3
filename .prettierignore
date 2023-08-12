@@ -1,0 +1,13 @@
+# {
+#   "editor.defaultFormatter": "esbenp.prettier-vscode",
+#   "[javascript]": {
+#     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+#   }
+# }
+# {
+#   "[javascript]": {
+#     "editor.formatOnSave": false
+#   }
+# }
+
+*.js
