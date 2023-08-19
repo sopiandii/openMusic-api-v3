@@ -24,23 +24,6 @@ class AlbumsHandler {
     return response;
   }
 
-  // async getAlbumByIdHandler(request, h) {
-  //   const { id } = request.params;
-  //   const [album, songs] = await Promise.all([
-  //     this._service.getAlbumById(id),
-  //     this._service.getSongsByAlbumId(id),
-  //   ]);
-  //   const albumSongs = { ...album, songs };
-
-  //   const response = h.response({
-  //     status: 'success',
-  //     data: {
-  //       album: albumSongs,
-  //     },
-  //   });
-  //   return response;
-  // }
-
   async getAlbumByIdHandler(request, h) {
     const { id } = request.params;
     const album = await this._service.getAlbumById(id);
