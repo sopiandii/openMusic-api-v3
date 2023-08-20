@@ -3,8 +3,16 @@ const config = {
     host: process.env.HOST,
     port: process.env.PORT,
   },
+  JwtToken: {
+    accessToken: process.env.ACCESS_TOKEN_KEY,
+    refreshToken: process.env.REFRESH_TOKEN_KEY,
+    accessTokenAge: process.env.ACCESS_TOKEN_AGE,
+  },
   rabbitMq: {
     server: process.env.RABBITMQ_SERVER,
+  },
+  redis: {
+    host: process.env.REDIS_SERVER,
   },
 };
 

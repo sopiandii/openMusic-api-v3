@@ -61,6 +61,71 @@ class AlbumsHandler {
     });
     return response;
   }
+
+  async postAlbumLikesHandler(request, h) {
+    const { id: credentialId } = request.auth.credentials;
+    const { id: albumId } = request.params;
+
+    await this._service.verifyAlbumLikes(albumId, credentialId);
+    await this._service.addAlbumLikes(albumId, credentialId);
+
+    const response = h.response({
+      status: 'success',
+      message: 'Anda menyukai album ini',
+    });
+    response.code(201);
+    return response;
+  }
+
+  async getAlbumLikesHandler(request, h) {
+    const { id } = request.params;
+    const { likes, dataSource } = await this._service.getAlbumLikes(id);
+
+    const response = h.response({
+      status: 'success',
+      data: {
+        likes: parseInt(likes, 10),
+      },
+    });
+    response.header('X-Data-Source', dataSource);
+    return response;
+  }
+
+  // async getAlbumLikesHandler(request, h) {
+  //   const { id } = request.params;
+  //   try {
+  //     const { likes, dataSource } = await this._service.getAlbumLikes(id, true);
+  //     const response = h.response({
+  //       status: 'success',
+  //       data: {
+  //         likes: parseInt(likes, 10),
+  //       },
+  //     });
+  //     response.header('X-Data-Source', dataSource);
+  //     return response;
+  //   } catch (error) {
+  //     const { likes, dataSource } = await this._service.getAlbumLikes(id, false);
+  //     const response = h.response({
+  //       status: 'success',
+  //       data: {
+  //         likes: parseInt(likes, 10),
+  //       },
+  //     });
+  //     response.header('X-Data-Source', dataSource);
+  //     return response;
+  //   }
+  // }
+
+  async deleteAlbumLikesHandler(request) {
+    const { id: credentialId } = request.auth.credentials;
+    const { id: albumId } = request.params;
+
+    await this._service.deleteAlbumLikes(albumId, credentialId);
+    return {
+      status: 'success',
+      message: 'Batal menyukai album',
+    };
+  }
 }
 
 module.exports = AlbumsHandler;

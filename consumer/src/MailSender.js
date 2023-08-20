@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const nodemailer = require('nodemailer');
 
 class MailSender {
@@ -6,8 +7,8 @@ class MailSender {
       host: process.env.SMTP_HOST,
       port: process.env.SMTP_PORT,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
+        user: process.env.MAIL_ADDRESS,
+        pass: process.env.MAIL_PASSWORD,
       },
     });
   }
